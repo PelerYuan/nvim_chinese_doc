@@ -1,0 +1,138 @@
+*faq.txt*		 Nvim						  译者：Peler
+
+                            NVIM REFERENCE MANUAL
+
+
+常见问题                                        *faq*
+
+                                  输入 |gO| 以查看目录.
+
+==============================================================================
+一般问题                                                 *faq-general*
+
+
+我应该把配置放到哪里 （VIMRC）? ~
+
+参阅 |config|; 你可以复制（或者使用符号链接）你现有的 vimrc。|nvim-from-vim|
+
+
+开发（预发布）版本的稳定性如何? ~
+
+不稳定的（预发布）版本
+https://github.com/neovim/neovim/releases/tag/nightly
+（"HEAD", 即 `master` 分支）用于积极的发布新的特性
+和更改。它通常是稳定的，但是偶尔会出现一些问题。
+我们依赖使用 HEAD 分支的用户报告的，未被自动测试检测到的
+"盲点"（blind spots）。
+
+使用稳定的版本（release） https://github.com/neovim/neovim/releases/latest
+获得更稳定和可预测的体验。
+
+
+我可以使用基于 Lua 的 Vim 插件（例如 Neocomplete）吗？~
+
+不可以。从 Nvim 0.2 PR #4411 版本开始
+https://github.com/neovim/neovim/pull/4411 Lua 被内置，但不支持
+旧版 Vim 的 if_lua 接口。
+
+
+如何在终端中使用 TRUE COLOR？~
+
+如果检测到支持的终端，TRUE COLOR（24位颜色）默认启用。
+如果你的终端没有被检测到，但你确定它支持 TRUE COLOR，
+添加以下内容到你的 |init.vim|：
+>vim
+    set termguicolors
+<
+
+在切换模式时，NVIM 显示奇怪的符号（`�[2 q`） ~
+
+这是你终端模拟器中的一个 bug。如果终端看上去是与
+xterm 兼容的（`TERM=xterm-256color`），
+Nvim 默认发送光标形状（cursor-shape）的终端代码。
+
+为了解决这个问题，你可以：
+
+- 使用一个不同的终端模拟器
+- 在你的 Nvim 配置中禁用 'guicursor' >vim
+
+    :set guicursor=
+    " Workaround some broken plugins which set guicursor indiscriminately.
+    :autocmd OptionSet guicursor noautocmd set guicursor=
+<
+另见 |$TERM| 以获得推荐的 `$TERM`.
+
+
+如何更改终端中光标的形状？ ~
+
+- 对于 Nvim 0.1.7 或者更老的版本：参阅在 `man nvim` 中关于 `NVIM_TUI_ENABLE_CURSOR_SHAPE` 的笔记。
+- 对于 Nvim 0.2 或者更新的版本：光标的样式被 'guicursor' 选项控制。
+    - 为了 _禁用_ 光标样式，请将 'guicursor' 设置为空 >vim
+
+            :set guicursor=
+            " Workaround some broken plugins which set guicursor indiscriminately.
+            :autocmd OptionSet guicursor noautocmd set guicursor=
+<
+    - 如果你想要一个不闪烁的光标，使用 `blinkon0`。参见 'guicursor'。
+    - 'guicursor' 默认开启，除非 Nvim 认为你的终端不
+        支持它。如果你确认你的终端支持光标形状（cursor-shaping），请按照
+        'guicursor' 中的描述在 |init.vim| 中设置 'guicursor'。
+- Vim 的终端选项 |t_SI| 和 `t_EI` 会被忽略，就像其它 |t_xx| 选项一样。
+- 老版本的 libvte(gnome-terminal, roxterm, terminator 等) 并不支持
+  光标样式的控制代码。 #2537
+  https://github.com/neovim/neovim/issues/2537
+
+
+如何更改终端中光标的颜色？ ~
+
+即使是在终端中，光标的样式（形状，颜色，行为）
+仍被 'guicursor' 控制。光标的颜色（与形状不同）仅在
+'termguicolors' 被设置时有效。
+
+'guicursor' 提供了一个例子，但是这里有一个更加复杂的例子，
+设置了在插入模式（insert-mode）和普通模式（normal-mode）中光标的不同颜色：
+>vim
+    :set termguicolors
+    :hi Cursor guifg=green guibg=green
+    :hi Cursor2 guifg=red guibg=red
+    :set guicursor=n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor2/lCursor2,r-cr:hor20,o:hor50
+<
+
+光标的形状在退出或挂起 Nvim 再重启之后没有恢复 ~
+
+终端并不提供一个方式来查询光标的样式。你可以使用自动命令来
+管理光标样式：
+>vim
+    au VimEnter,VimResume * set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
+      \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+      \,sm:block-blinkwait175-blinkoff150-blinkon175
+
+    au VimLeave,VimSuspend * set guicursor=a:block-blinkon0
+<
+
+光标的形状在 TMUX 中并没有被改变 ~
+
+这是 tmux 的问题，并不是 Nvim 的。参见 |tui-cursor-shape| 查找修复方法。
+
+另见 #3165 https://github.com/neovim/neovim/pull/3165 for discussion.
+
+
+光标在 TMUX 中一闪而过？
+
+如果你在 tmux 下直接打开 nvim（没有打开任何文件），发现 `_` 光标出现之后迅速消失，
+并且这时你在 `EndOfBuffer` 和 `Normal` 中设置了 |ctermbg|，
+请尝试将这些设置为 `NONE`：
+>vim
+    hi EndOfBuffer ctermbg=NONE ctermfg=200 cterm=NONE
+    hi Normal ctermbg=NONE ctermfg=200 cterm=NONE
+<
+
+--remote 和其它参数发生了什么 ~
+
+|--remote| 被部分支持 |clientserver|
+
+如果你需要 Vim 中缺少的参数，你可以使用
+https://github.com/mhinz/neovim-remote 来代替。
+
+==============================================================================
+运行时问题                                                *faq-runtime*

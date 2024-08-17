@@ -1,0 +1,162 @@
+api.txt
+arabic.txt
+autocmd.txt
+backers.txt
+builtin.txt
+change.txt
+channel.txt
+cmdline.txt
+debug.txt
+deprecated.txt
+dev_style.txt
+dev_theme.txt
+dev_tools.txt
+dev_vimpatch.txt
+develop.txt
+diagnostic.txt
+diff.txt
+digraph.txt
+editing.txt
+editorconfig.txt
+eval.txt
+faq.txt
+filetype.txt
+fold.txt
+ft_ada.txt
+ft_hare.txt
+ft_ps1.txt
+ft_raku.txt
+ft_rust.txt
+ft_sql.txt
+gui.txt
+health.txt
+hebrew.txt
+help.txt
+helphelp.txt
+if_cscop.txt
+if_lua.txt
+if_perl.txt
+if_pyth.txt
+if_ruby.txt
+indent.txt
+index.txt
+insert.txt
+intro.txt
+job_control.txt
+lsp-extension.txt
+lsp.txt
+lua-guide.txt
+lua.txt
+luaref.txt
+luvref.txt
+makehtml.awk
+maketags.awk
+map.txt
+mbyte.txt
+message.txt
+mlang.txt
+motion.txt
+msgpack_rpc.txt
+news-0.10.txt
+news-0.9.txt
+news.txt
+nvim.txt
+nvim_terminal_emulator.txt
+options.txt
+pattern.txt
+pi_gzip.txt
+pi_health.txt
+pi_msgpack.txt
+pi_netrw.txt
+pi_paren.txt
+pi_spec.txt
+pi_tar.txt
+pi_tutor.txt
+pi_zip.txt
+print.txt
+provider.txt
+quickfix.txt
+quickref.txt
+recover.txt
+remote.txt
+remote_plugin.txt
+repeat.txt
+rileft.txt
+russian.txt
+scroll.txt
+sign.txt
+spell.txt
+starting.txt
+support.txt
+syntax.txt
+tabpage.txt
+tags
+tagsrch.txt
+term.txt
+testing.txt
+tips.txt
+treesitter.txt
+uganda.txt
+ui.txt
+undo.txt
+userfunc.txt
+usr_01.txt
+usr_02.txt
+usr_03.txt
+usr_04.txt
+usr_05.txt
+usr_06.txt
+usr_07.txt
+usr_08.txt
+usr_09.txt
+usr_10.txt
+usr_11.txt
+usr_12.txt
+usr_20.txt
+usr_21.txt
+usr_22.txt
+usr_23.txt
+usr_24.txt
+usr_25.txt
+usr_26.txt
+usr_27.txt
+usr_28.txt
+usr_29.txt
+usr_30.txt
+usr_31.txt
+usr_32.txt
+usr_40.txt
+usr_41.txt
+usr_42.txt
+usr_43.txt
+usr_44.txt
+usr_45.txt
+usr_toc.txt
+various.txt
+vi_diff.txt
+vim_diff.txt
+visual.txt
+vvars.txt
+windows.txt
+
+开始翻译 Neovim 文档时，可以考虑以下几个优先级和策略：
+
+1. 用户手册和指南
+help.txt: 作为核心文档，翻译它将为用户提供 Neovim 的基础知识和使用指南。
+intro.txt: 介绍文档，适合新手用户，翻译后可以帮助更多的初学者上手。
+quickref.txt: 快速参考文档，能够快速帮助用户找到常用命令和功能，非常实用。
+2. 常见问题和技巧
+faq.txt: 解决用户常见疑问，翻译后能大幅度提升用户体验。
+tips.txt: 提供使用 Neovim 的小技巧，对用户来说非常有帮助。
+3. 功能和插件
+options.txt: 详细讲解配置选项，有助于用户更好地定制自己的环境。
+autocmd.txt 或 lsp.txt: 这两个文档涉及的功能非常实用，翻译能帮助用户理解如何使用自动命令和语言服务器。
+4. 开发者相关
+dev_style.txt 和 dev_tools.txt: 如果目标用户群体有开发者，翻译这些文档可以帮助他们理解 Neovim 的开发环境。
+5. 语言支持
+如果你知道用户群体中有特定的编程语言需求，可以优先选择相关的文件，如 ft_rust.txt、ft_sql.txt 等。
+执行策略
+小组合作: 如果有其他志同道合的人，可以分工合作，各自选择不同的文档进行翻译，然后再进行汇总和校对。
+逐步推进: 可以选择先翻译几个核心文档，然后逐步扩展到其他文档。
+反馈循环: 尝试将翻译的结果分享给用户或社区，收集反馈并进行改进。
+综上所述，建议首先从用户手册和指南部分开始，因为这些文档将直接影响到新用户的使用体验。之后可以逐渐扩展到其他领域的文档。你觉得这个顺序合适吗？还是有其他的考虑？
