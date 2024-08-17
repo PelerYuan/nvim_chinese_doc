@@ -10,7 +10,7 @@
 
 本人为高中生，雅思已过7.5，利用业余时间边学习边尝试翻译。
 
-由于 Nvim 和 vim 的相似性，本项目参考 [Vim 中文文档计划](https://github.com/yianwillis/vimcdoc/)。对于 Nvim 和 vim 共有的文档，通过工具比对异同后翻译。如果时 Nvim 的文档则直接人工翻译。
+由于 Nvim 和 vim 的相似性，本项目参考 [Vim 中文文档计划](https://github.com/yianwillis/vimcdoc/)。对于 Nvim 和 vim 共有的文档，通过工具比对异同后翻译。如果是 Nvim 独有的文档则直接人工翻译。
 
 欢迎大家加入。QQ：2975972646
 
